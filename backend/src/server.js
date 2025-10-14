@@ -5,7 +5,7 @@ import app from "./app.js";
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://Uddhav:sharda1234@mongocode.5v3yz92.mongodb.net/PlanifyHub?retryWrites=true&w=majority";
+const MONGO_URI = process.env.MONGO_URI ;
 console.log("🌟 Starting PlanifyHub Backend...");
 
 mongoose
