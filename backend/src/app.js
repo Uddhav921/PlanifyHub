@@ -4,7 +4,7 @@ const app = express();
 
 // Add this route for root URL
 app.get("/", (req, res) => {
-  res.send("Welcome!ssdddd 🚀");
+  res.send("Welcome!ss 🚀");
 });
 
 // ...existing code...
