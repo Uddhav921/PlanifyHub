@@ -4,9 +4,12 @@ import dotenv from "dotenv";
 
 dotenv.config(); // Load environment variables
 
+import { loggingMiddleware, nextMiddleware } from "./middlewares/appMiddleware.js"; // added import
+
 const app = express();
 
 // Enable CORS using origin from .env
+// ...existing code...
 app.use(cors({
   origin: process.env.FRONTEND_ORIGIN || "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -16,18 +19,9 @@ app.use(cors({
 // Middleware to parse JSON
 app.use(express.json());
 
-// Logging middleware
-app.use((req, res, next) => {
-  console.log("🌐 Hostname:", req.hostname);
-  console.log("📁 Path:", req.path);
-  console.log("📝 Method:", req.method);
-  next();
-});
-
-app.use((req, res, next) => {
-  console.log("➡️ In the next middleware");
-  next();
-});
+// use imported middlewares
+app.use(loggingMiddleware);
+app.use(nextMiddleware);
 
 // Example route
 app.get("/", (req, res) => {
