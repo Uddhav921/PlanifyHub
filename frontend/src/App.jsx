@@ -1,27 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-function App() {
-  const [events, setEvents] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/events")
-      .then(res => setEvents(res.data))
-      .catch(err => console.error(err));
-  }, []);
-
+export default function App() {
   return (
-    <div className="p-6">
-      <h1>🎉 Event Management</h1>
-      {events.map(e => (
-        <div key={e._id}>
-          <h3>{e.name}</h3>
-          <p>{e.date}</p>
-          <p>{e.location}</p>
-        </div>
-      ))}
+    <div style={{ textAlign: 'center', padding: '2rem' }}>
+      <h1>🚀 PlanifyHub Frontend is Working!</h1>
+      <p>Edit <code>src/App.jsx</code> and save to test hot reload.</p>
     </div>
-  );
+  )
 }
-
-export default App;
