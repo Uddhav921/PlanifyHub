@@ -1,19 +1,24 @@
 import express from "express";
-import Event from "../models/Event.js";
+import {
+  getAllEvents,
+  getEventById,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+  getHostEvents
+} from "../controllers/eventController.js";
+import { authenticate } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-// GET all events
-router.get("/", async (req, res) => {
-  const events = await Event.find();
-  res.json(events);
-});
+// Public routes
+router.get("/", getAllEvents); // Get all events with filters
+router.get("/:id", getEventById); // Get single event
 
-// POST create new event
-router.post("/", async (req, res) => {
-  const newEvent = new Event(req.body);
-  await newEvent.save();
-  res.json(newEvent);
-});
+// Protected routes (host only)
+router.post("/", authenticate, createEvent); // Create event
+router.put("/:id", authenticate, updateEvent); // Update event
+router.delete("/:id", authenticate, deleteEvent); // Delete event
+router.get("/host/my-events", authenticate, getHostEvents); // Get host's events
 
 export default router;
