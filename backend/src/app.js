@@ -35,7 +35,7 @@ app.use("/api/users", userRoutes);
 
 // Health check
 app.get("/", (req, res) => {
-  res.send("🚀 PlanifyHub Backend API is running!");
+  res.send("🚀 lanifyHub Backend API is running!");
 });
 
 export default app;
